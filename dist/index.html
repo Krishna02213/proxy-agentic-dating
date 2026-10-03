@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Proxy is an agentic dating lab: public-profile agents analyze, date, and rank compatible people." />
+  <meta name="theme-color" content="#1c2cff" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231c2cff'/%3E%3Ccircle cx='23' cy='30' r='12' fill='%23fff'/%3E%3Ccircle cx='41' cy='30' r='12' fill='%23eaff00'/%3E%3Cpath d='M25 42h14' stroke='%23ff4057' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E" />
+  <title>Proxy — Agentic Dating Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Proxy home"><span class="brand-mark"><i></i><i></i></span>PROXY<span class="beta">LAB 01</span></a>
+    <nav class="nav-tabs" aria-label="Primary navigation">
+      <button class="nav-tab active" data-view="people">01 PEOPLE</button>
+      <button class="nav-tab" data-view="dates">02 LIVE DATES</button>
+      <button class="nav-tab" data-view="rankings">03 RANKINGS</button>
+    </nav>
+    <button class="primary-button compact" id="openAdd">+ ADD A PERSON</button>
+  </header>
+
+  <main>
+    <section class="view active" id="peopleView">
+      <div class="intro-grid">
+        <div>
+          <p class="eyebrow">THE PUBLIC-SIGNAL MATCHMAKING EXPERIMENT</p>
+          <h1>Your agent goes<br><span>before you do.</span></h1>
+        </div>
+        <div class="intro-copy">
+          <p>Every person becomes an agent built from exactly two public sources. The agents meet, challenge assumptions, and score their chemistry.</p>
+          <div class="pipeline"><span>LINKEDIN</span><b>+</b><span>INSTAGRAM</span><b>→</b><span>AGENT</span><b>→</b><span>DATE</span></div>
+        </div>
+      </div>
+
+      <div class="section-head">
+        <div><span class="live-dot"></span><strong id="peopleCount">25 AGENTS READY</strong></div>
+        <div class="search-wrap"><span>⌕</span><input id="searchInput" aria-label="Search people" placeholder="Search people, interests, traits" /></div>
+      </div>
+      <div class="people-grid" id="peopleGrid"></div>
+    </section>
+
+    <section class="view" id="datesView">
+      <div class="date-header">
+        <div><p class="eyebrow">LIVE AGENT DATE / SIMULATION ROOM</p><h2>Watch the agents<br>find the signal.</h2></div>
+        <div class="date-controls">
+          <label>AGENT A<select id="dateA"></select></label>
+          <label>AGENT B<select id="dateB"></select></label>
+          <button class="primary-button" id="runDate">RUN THIS DATE</button>
+        </div>
+      </div>
+      <div class="date-stage">
+        <div class="date-person left" id="datePersonA"></div>
+        <div class="conversation-panel">
+          <div class="conversation-top"><span><i></i> AGENTS SPEAKING</span><span id="dateTimer">00:00</span></div>
+          <div class="messages" id="messages"></div>
+          <div class="date-result" id="dateResult"></div>
+        </div>
+        <div class="date-person right" id="datePersonB"></div>
+      </div>
+      <div class="date-footnote">Agent dialogue is a creative simulation based only on the two linked public profiles. It does not claim to know private preferences or compatibility.</div>
+    </section>
+
+    <section class="view" id="rankingsView">
+      <div class="rank-header">
+        <div><p class="eyebrow">FULL ROUND ROBIN / 300 DATES</p><h2>Every agent’s<br>best fit, ranked.</h2></div>
+        <div class="rank-select-wrap"><label>SHOW RANKING FOR<select id="rankingPerson"></select></label><button class="primary-button" id="rerunRankings">RE-RUN TOURNAMENT</button></div>
+      </div>
+      <div class="ranking-layout">
+        <aside class="ranking-owner" id="rankingOwner"></aside>
+        <div class="ranking-table" id="rankingTable"></div>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal" id="profileModal" aria-hidden="true"><div class="modal-backdrop" data-close></div><article class="profile-sheet" id="profileSheet"></article></div>
+  <div class="modal" id="addModal" aria-hidden="true"><div class="modal-backdrop" data-close></div><article class="add-sheet">
+    <button class="close-button" data-close aria-label="Close">×</button>
+    <p class="eyebrow">CREATE A NEW PROXY</p><h2>Two links.<br>One agent.</h2>
+    <p class="form-note">Use the person’s public profile links. Proxy reads only the URL-visible identity and builds a privacy-aware public-signal profile.</p>
+    <form id="addForm">
+      <label>LINKEDIN PUBLIC PROFILE<input id="linkedinInput" type="url" required placeholder="https://www.linkedin.com/in/..." pattern="https?://(www\.)?linkedin\.com/in/.+" /></label>
+      <label>PUBLIC INSTAGRAM PROFILE<input id="instagramInput" type="url" required placeholder="https://www.instagram.com/..." pattern="https?://(www\.)?instagram\.com/.+" /></label>
+      <div class="form-status" id="formStatus"><span>1</span> Links validated <b></b><span>2</span> Signals mapped <b></b><span>3</span> Agent ready</div>
+      <button class="primary-button wide" type="submit">ANALYZE & CREATE AGENT</button>
+    </form>
+    <p class="privacy-note">No private data. No sensitive-trait inference. Added profiles stay in this browser.</p>
+  </article></div>
+  <div class="toast" id="toast"></div>
+  <script src="./app.js"></script>
+</body>
+</html>
