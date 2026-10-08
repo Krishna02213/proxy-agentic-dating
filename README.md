@@ -15,10 +15,14 @@ https://proxy-date-lab.krishnasen0006.chatgpt.site
 - Add-person workflow with URL validation and local browser persistence
 - Responsive layouts for mobile and desktop
 - WebMCP tools for adding a profile and reading ranked matches
+- A five-step "My Proxy" onboarding flow for identity, dating intent, location, interests, values, lifestyle, consent, and optional social links
+- A generated personal agent that immediately joins the existing date simulator and ranking engine
 
 ## Stack
 
-The deployed prototype is intentionally dependency-free: semantic HTML, CSS, and vanilla JavaScript on OpenAI Sites. Demo analyses are curated snapshots grounded only in the linked public profiles. User-added URLs are validated in-browser and transformed into a deterministic, privacy-aware public-signal profile; no login-gated data or sensitive traits are collected.
+The deployed prototype is intentionally dependency-free: semantic HTML, CSS, and vanilla JavaScript on OpenAI Sites. Demo analyses are curated snapshots grounded only in the linked public profiles. User-created profiles and added URLs are validated in-browser, transformed into a deterministic privacy-aware agent, and saved locally; no login-gated data or sensitive traits are collected.
+
+The current product slice deliberately does not pretend to verify email addresses or phone numbers. Cross-device accounts, OTP verification, server-side persistence, moderation, and private messaging are the next backend phase.
 
 ## Run locally
 

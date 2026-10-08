@@ -20,7 +20,10 @@
       <button class="nav-tab" data-view="dates">02 LIVE DATES</button>
       <button class="nav-tab" data-view="rankings">03 RANKINGS</button>
     </nav>
-    <button class="primary-button compact" id="openAdd">+ ADD A PERSON</button>
+    <div class="top-actions">
+      <button class="account-button" id="openOnboarding"><span class="account-dot"></span><span id="accountLabel">CREATE MY PROXY</span></button>
+      <button class="primary-button compact" id="openAdd">+ ADD A PERSON</button>
+    </div>
   </header>
 
   <main>
@@ -88,6 +91,67 @@
       <button class="primary-button wide" type="submit">ANALYZE & CREATE AGENT</button>
     </form>
     <p class="privacy-note">No private data. No sensitive-trait inference. Added profiles stay in this browser.</p>
+  </article></div>
+  <div class="modal onboarding-modal" id="onboardingModal" aria-hidden="true"><div class="modal-backdrop" data-close></div><article class="onboarding-sheet">
+    <button class="close-button" data-close aria-label="Close">×</button>
+    <aside class="onboarding-rail">
+      <a class="brand onboarding-brand" href="#"><span class="brand-mark"><i></i><i></i></span>PROXY</a>
+      <div class="onboarding-progress" id="onboardingProgress">
+        <button class="active" data-step-jump="0"><span>01</span>ACCOUNT</button>
+        <button data-step-jump="1"><span>02</span>IDENTITY</button>
+        <button data-step-jump="2"><span>03</span>YOUR LIFE</button>
+        <button data-step-jump="3"><span>04</span>SIGNALS</button>
+        <button data-step-jump="4"><span>05</span>YOUR AGENT</button>
+      </div>
+      <p>Your answers belong to you. Demo profiles stay on this device until secure account sync is connected.</p>
+    </aside>
+    <form class="onboarding-main" id="onboardingForm">
+      <section class="onboarding-step active" data-step="0">
+        <p class="eyebrow">WELCOME TO PROXY / 01</p><h2>Let’s start<br>with you.</h2>
+        <p class="step-copy">Create the identity your agent will represent. We never publish contact details.</p>
+        <div class="field-grid">
+          <label class="full">YOUR NAME<input name="name" required autocomplete="name" placeholder="How people should know you" /></label>
+          <label>EMAIL<input name="email" type="email" required autocomplete="email" placeholder="you@example.com" /></label>
+          <label>MOBILE NUMBER<input name="phone" type="tel" required autocomplete="tel" placeholder="+91 98765 43210" /></label>
+          <label class="full">DATE OF BIRTH<input name="dob" type="date" required /></label>
+        </div>
+        <div class="verification-note"><span>SECURITY NOTE</span>Email and SMS verification require the production identity service. This first slice saves your draft privately on this device.</div>
+      </section>
+      <section class="onboarding-step" data-step="1">
+        <p class="eyebrow">IDENTITY & INTENT / 02</p><h2>Who are you<br>looking for?</h2>
+        <div class="field-grid">
+          <label>GENDER IDENTITY<select name="gender" required><option value="">Choose</option><option>Woman</option><option>Man</option><option>Non-binary</option><option>Self-describe</option><option>Prefer not to say</option></select></label>
+          <label>INTERESTED IN<select name="lookingFor" required><option value="">Choose</option><option>Women</option><option>Men</option><option>Everyone</option><option>Still exploring</option></select></label>
+          <label>RELATIONSHIP GOAL<select name="goal" required><option value="">Choose</option><option>Long-term relationship</option><option>Life partner</option><option>Dating intentionally</option><option>Open to possibilities</option></select></label>
+          <label>HOME CITY<input name="city" required placeholder="Bengaluru" /></label>
+          <label>AGE RANGE<input name="ageRange" required placeholder="25–34" /></label>
+          <label>MAXIMUM DISTANCE<select name="distance"><option>25 km</option><option>50 km</option><option>100 km</option><option>Anywhere</option></select></label>
+        </div>
+      </section>
+      <section class="onboarding-step" data-step="2">
+        <p class="eyebrow">LIFE & COMPATIBILITY / 03</p><h2>What makes<br>you, you?</h2>
+        <p class="step-copy">Choose at least three interests and two values. Your agent uses these as conversation anchors—not as labels.</p>
+        <fieldset class="chip-field"><legend>INTERESTS</legend><div class="choice-grid" id="interestChoices"></div></fieldset>
+        <fieldset class="chip-field"><legend>VALUES</legend><div class="choice-grid" id="valueChoices"></div></fieldset>
+        <label class="text-area-label">A GREAT WEEKEND LOOKS LIKE<textarea name="weekend" required placeholder="Slow coffee, a long walk, live music, cooking for friends…"></textarea></label>
+      </section>
+      <section class="onboarding-step" data-step="3">
+        <p class="eyebrow">PUBLIC SIGNALS / 04</p><h2>Add context,<br>not surveillance.</h2>
+        <p class="step-copy">Social links are optional. Only public, user-provided pages are in scope; private or login-gated content is never requested.</p>
+        <div class="field-grid">
+          <label class="full">PUBLIC INSTAGRAM<input name="instagram" type="url" placeholder="https://instagram.com/yourhandle" /></label>
+          <label class="full">LINKEDIN<input name="linkedin" type="url" placeholder="https://linkedin.com/in/yourprofile" /></label>
+          <label class="full">ANOTHER PUBLIC PROFILE<input name="otherSocial" type="url" placeholder="Personal site, YouTube, X, or another public page" /></label>
+        </div>
+        <label class="consent-row"><input name="consent" type="checkbox" required /><span>I consent to Proxy using my answers and the public links I provide to generate my agent, simulate private agent dates, and calculate recommendations. I can edit or remove my profile.</span></label>
+      </section>
+      <section class="onboarding-step" data-step="4">
+        <p class="eyebrow">YOUR AGENT / 05</p><h2>Meet your<br>first proxy.</h2>
+        <div class="agent-preview" id="agentPreview"></div>
+        <div class="review-note"><strong>YOU STAY IN CONTROL.</strong><span>This profile is editable. Agents do not reveal identities, message people, or arrange meetings without mutual human approval.</span></div>
+      </section>
+      <footer class="onboarding-actions"><span id="stepCounter">STEP 1 OF 5</span><div><button class="secondary-button" type="button" id="onboardingBack">BACK</button><button class="primary-button" type="button" id="onboardingNext">CONTINUE</button><button class="primary-button" type="submit" id="onboardingFinish">CREATE MY AGENT</button></div></footer>
+    </form>
   </article></div>
   <div class="toast" id="toast"></div>
   <script src="./app.js"></script>
